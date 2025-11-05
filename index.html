@@ -6,45 +6,70 @@
     <title>Breathe Divinity - Official Site</title>
     
     <style>
-        /* CSS: Resim ve Video İçin Temel Yapı */
         body {
             background-color: black;
-            margin: 0; /* Tarayıcıdaki varsayılan boşlukları sıfırlar */
+            margin: 0;
             padding: 0;
-            text-align: center; /* Yan yana gelen öğeleri ortalamak için */
+            text-align: center;
+            font-family: Arial, sans-serif;
         }
+
         .icerik {
-            display: none; /* İlk başta tüm ana içeriği gizleriz */
-            text-align: left; /* İçerik göründükten sonra metni sola yaslar */
+            display: none;
+            text-align: center;
         }
+
         .acilis-ekrani {
             width: 100vw;
             height: 100vh;
             cursor: pointer;
             overflow: hidden;
         }
+
         .acilis-ekrani img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Resmi keserek ekranı doldurur */
+            object-fit: cover;
         }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin: 30px 0;
+            font-size: 2rem;
+        }
+
         .video-container {
-            /* Videoları kapsayan div. Ortalamak için kullanılır */
-            text-align: center; 
-            white-space: nowrap; /* İçindeki öğeleri tek satırda tutmaya çalışır */
-            padding-top: 50px;
+            display: flex;
+            flex-wrap: wrap; /* küçük ekranlarda alt alta geçsin */
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
         }
+
         .video-ayar {
-            display: inline-block; /* Videoları yan yana getirir */
-            margin-left: 20px; /* Videolar arası boşluk */
-            margin-right: 20px;
-            vertical-align: top;
+            width: 90%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 10px;
         }
+
         hr {
             border: none; 
             border-top: 1px solid white;
             width: 90%;
             margin: 20px auto;
+        }
+
+        /* Daha küçük telefon ekranları için özel ayarlar */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .video-ayar {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -60,18 +85,16 @@
     
     <div id="ana-icerik" class="icerik">
         
-        <h1 style="margin-left: 825px; color: white;">Breathe Divinity</h1>
+        <h1>Breathe Divinity</h1>
         <hr>
 
         <div class="video-container">
             <video src="ssstik.io_@breathedivinity_1762301700366.mp4" 
-                   width="500px" 
                    autoplay loop muted
                    class="video-ayar"> 
             </video>
             
             <video src="bd2.mp4" 
-                   width="500px" 
                    autoplay loop muted
                    class="video-ayar"> 
             </video>
@@ -85,17 +108,14 @@
             var acilis = document.getElementById("acilis");
             var icerik = document.getElementById("ana-icerik");
             
-            // a) SES BAŞLATMA (Tıklama olduğu için sesli çalışacaktır)
+            // Müzik başlat
             muzik.play().catch(error => {
                 console.log("Müzik başlatılamadı:", error);
             });
             
-            // b) GÖRÜNÜRLÜK AYARI
-            acilis.style.display = 'none'; // Açılış resmini gizle
-            icerik.style.display = 'block'; // Ana içeriği göster
-            
-            // Opsiyonel: Yönlendirme gerekiyorsa, buraya ekleyin:
-            // window.location.href = "index.html"; 
+            // Açılış ekranını gizle, içeriği göster
+            acilis.style.display = 'none';
+            icerik.style.display = 'block';
         }
     </script>
 
