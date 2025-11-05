@@ -41,6 +41,10 @@
   .icerik {
     opacity: 0;
     transition: opacity 0.6s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
   }
 
   .icerik.goster {
@@ -49,7 +53,7 @@
 
   h1 {
     color: white;
-    margin: 20px 0 10px 0;
+    margin: 30px 0 5px 0;
     font-size: clamp(1.8rem, 5vw, 2.5rem);
   }
 
@@ -57,7 +61,7 @@
     border: none;
     border-top: 1px solid white;
     width: 90%;
-    margin: 10px auto 25px auto;
+    margin: 10px auto 40px auto;
   }
 
   /* --- VİDEOLAR --- */
@@ -65,12 +69,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh; /* ekranın %80’ini kapsar */
-    gap: 20px; /* aradaki boşluk */
+    gap: 25px;
+    padding: 0 10px;
+    flex-wrap: nowrap;
   }
 
   .video-ayar {
-    width: 45%;
+    width: 44%;
     aspect-ratio: 9 / 16;
     object-fit: cover;
     border-radius: 10px;
@@ -78,9 +83,8 @@
 
   @media (max-width: 600px) {
     .video-wrapper {
-      flex-direction: row;
-      gap: 10px;
-      height: 75vh;
+      gap: 15px;
+      padding-bottom: 10vh; /* alt nefes boşluğu */
     }
     .video-ayar {
       width: 46%;
