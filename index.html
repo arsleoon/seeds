@@ -1,136 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Breathe Divinity - Official Site</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breathe Divinity - Official Site</title>
 
-  <style>
-    body {
-      background-color: black;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-      text-align: center;
-      font-family: Arial, sans-serif;
-    }
+<style>
+  * {
+    box-sizing: border-box;
+  }
 
-    .icerik {
-      display: none;
-      text-align: center;
-    }
+  body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
 
-    .acilis-ekrani {
-      width: 100vw;
-      height: 100dvh; /* tüm ekran yüksekliği (notch dahil) */
-      cursor: pointer;
-      background-color: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
+  .acilis-ekrani {
+    position: fixed;
+    inset: 0;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    transition: opacity 1s ease;
+  }
 
-    .acilis-ekrani img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* tam sığdırır, kesmez */
-      background-color: black;
-    }
+  .acilis-ekrani img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 
-    h1 {
-      color: white;
-      text-align: center;
-      margin: 20px 0;
-      font-size: clamp(1.8rem, 5vw, 2.5rem);
-    }
+  .icerik {
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
 
-    .video-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      padding: 10px;
-      box-sizing: border-box;
-    }
+  .icerik.goster {
+    opacity: 1;
+  }
 
+  h1 {
+    color: white;
+    margin: 20px 0;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  }
+
+  .video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: nowrap;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .video-ayar {
+    width: 48%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid white;
+    width: 90%;
+    margin: 10px auto 20px auto;
+  }
+
+  @media (max-width: 600px) {
     .video-ayar {
-      width: 45%;
-      max-width: 400px;
-      height: auto;
-      border-radius: 10px;
+      width: 48%;
     }
-
-    hr {
-      border: none;
-      border-top: 1px solid white;
-      width: 90%;
-      margin: 10px auto 20px auto;
-    }
-
-    @media (max-width: 768px) {
-      .video-container {
-        justify-content: space-between;
-      }
-
-      .video-ayar {
-        width: 48%;
-        max-width: none;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .video-ayar {
-        width: 48%;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <audio id="muzik" src="Deftones_Entombed_Ringtone_(by Fringster.com) (1).mp3" loop></audio> 
+<audio id="muzik" src="Deftones_Entombed_Ringtone_(by Fringster.com) (1).mp3" loop></audio>
 
-  <div id="acilis" class="acilis-ekrani" onclick="baslatVeGoster();">
-    <img src="287444676_688488695574105_999326000883121336_n.png" 
-         alt="BreatheDivinity Logo" 
-         title="Enter to the NIGHT"> 
+<div id="acilis" class="acilis-ekrani" onclick="baslatVeGoster();">
+  <img src="287444676_688488695574105_999326000883121336_n.png" alt="BreatheDivinity Logo">
+</div>
+
+<div id="ana-icerik" class="icerik">
+  <h1>Breathe Divinity</h1>
+  <hr>
+
+  <div class="video-container">
+    <video id="vid1" src="ssstik.io_@breathedivinity_1762301700366.mp4" loop muted playsinline class="video-ayar"></video>
+    <video id="vid2" src="bd2.mp4" loop muted playsinline class="video-ayar"></video>
   </div>
+</div>
 
-  <div id="ana-icerik" class="icerik">
-    <h1>Breathe Divinity</h1>
-    <hr>
+<script>
+function baslatVeGoster() {
+  const muzik = document.getElementById("muzik");
+  const acilis = document.getElementById("acilis");
+  const icerik = document.getElementById("ana-icerik");
+  const vid1 = document.getElementById("vid1");
+  const vid2 = document.getElementById("vid2");
 
-    <div class="video-container">
-      <video id="vid1" src="ssstik.io_@breathedivinity_1762301700366.mp4" 
-             loop muted playsinline class="video-ayar"></video>
-      
-      <video id="vid2" src="bd2.mp4" 
-             loop muted playsinline class="video-ayar"></video>
-    </div>
-  </div>
+  // Kullanıcı tıklamasıyla müzik ve videoları başlat
+  muzik.play().catch(err => console.log("Müzik oynatılmadı:", err));
+  [vid1, vid2].forEach(v => {
+    v.play().catch(err => console.log("Video oynatılmadı:", err));
+  });
 
-  <script>
-    function baslatVeGoster() {
-      const muzik = document.getElementById("muzik");
-      const acilis = document.getElementById("acilis");
-      const icerik = document.getElementById("ana-icerik");
-      const vid1 = document.getElementById("vid1");
-      const vid2 = document.getElementById("vid2");
-
-      // Müzik başlat
-      muzik.play().catch(err => console.log("Müzik oynatılmadı:", err));
-
-      // Videoları kullanıcı tıklamasıyla başlat
-      [vid1, vid2].forEach(v => {
-        v.play().catch(err => console.log("Video oynatılmadı:", err));
-      });
-
-      // Açılış ekranını gizle, içerik göster
-      acilis.style.display = 'none';
-      icerik.style.display = 'block';
-    }
-  </script>
+  // Fade-out geçişi
+  acilis.style.opacity = "0";
+  setTimeout(() => {
+    acilis.style.display = "none";
+    icerik.classList.add("goster");
+  }, 1000);
+}
+</script>
 
 </body>
 </html>
