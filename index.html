@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Breathe Divinity - Official Site</title>
-    
+
     <style>
         body {
             background-color: black;
             margin: 0;
             padding: 0;
+            overflow-x: hidden; /* yana kaymayı engeller */
             text-align: center;
             font-family: Arial, sans-serif;
         }
@@ -35,40 +36,53 @@
         h1 {
             color: white;
             text-align: center;
-            margin: 30px 0;
-            font-size: 2rem;
+            margin: 20px 0;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
         }
 
         .video-container {
             display: flex;
-            flex-wrap: wrap; /* küçük ekranlarda alt alta geçsin */
             justify-content: center;
-            gap: 20px;
-            padding: 20px;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 10px;
+            box-sizing: border-box;
         }
 
         .video-ayar {
-            width: 90%;
-            max-width: 500px;
+            width: 45%;
+            max-width: 400px;
             height: auto;
             border-radius: 10px;
         }
 
         hr {
-            border: none; 
+            border: none;
             border-top: 1px solid white;
             width: 90%;
-            margin: 20px auto;
+            margin: 10px auto 20px auto;
         }
 
-        /* Daha küçük telefon ekranları için özel ayarlar */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.5rem;
+        /* Telefonlar için optimize görünüm */
+        @media (max-width: 768px) {
+            .video-container {
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                padding: 0 10px;
             }
 
             .video-ayar {
-                width: 100%;
+                width: 48%;
+                max-width: none;
+                height: auto;
+            }
+        }
+
+        /* Küçük telefonlar için */
+        @media (max-width: 480px) {
+            .video-ayar {
+                width: 48%;
             }
         }
     </style>
@@ -84,36 +98,32 @@
     </div>
     
     <div id="ana-icerik" class="icerik">
-        
         <h1>Breathe Divinity</h1>
         <hr>
 
         <div class="video-container">
             <video src="ssstik.io_@breathedivinity_1762301700366.mp4" 
-                   autoplay loop muted
-                   class="video-ayar"> 
-            </video>
+                   autoplay loop muted playsinline
+                   class="video-ayar"></video>
             
             <video src="bd2.mp4" 
-                   autoplay loop muted
-                   class="video-ayar"> 
-            </video>
+                   autoplay loop muted playsinline
+                   class="video-ayar"></video>
         </div>
-        
     </div>
 
     <script>
         function baslatVeGoster() {
-            var muzik = document.getElementById("muzik");
-            var acilis = document.getElementById("acilis");
-            var icerik = document.getElementById("ana-icerik");
-            
-            // Müzik başlat
+            const muzik = document.getElementById("muzik");
+            const acilis = document.getElementById("acilis");
+            const icerik = document.getElementById("ana-icerik");
+
+            // Müziği başlat
             muzik.play().catch(error => {
                 console.log("Müzik başlatılamadı:", error);
             });
-            
-            // Açılış ekranını gizle, içeriği göster
+
+            // Açılış ekranını gizle, içerik göster
             acilis.style.display = 'none';
             icerik.style.display = 'block';
         }
