@@ -3,28 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WelcomeToBreatheDivinity</title>
-    </head>
-
-<body style="background-color: black;">
-
-    <h1 style="margin-left: 825px; color: white;">Breathe Divinity</h1>
+    <title>Breathe Divinity - Official Site</title>
     
-    <hr style="border: none; border-top: 1px solid white;">
+    <style>
+        /* CSS: Resim ve Video İçin Temel Yapı */
+        body {
+            background-color: black;
+            margin: 0; /* Tarayıcıdaki varsayılan boşlukları sıfırlar */
+            padding: 0;
+            text-align: center; /* Yan yana gelen öğeleri ortalamak için */
+        }
+        .icerik {
+            display: none; /* İlk başta tüm ana içeriği gizleriz */
+            text-align: left; /* İçerik göründükten sonra metni sola yaslar */
+        }
+        .acilis-ekrani {
+            width: 100vw;
+            height: 100vh;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .acilis-ekrani img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Resmi keserek ekranı doldurur */
+        }
+        .video-container {
+            /* Videoları kapsayan div. Ortalamak için kullanılır */
+            text-align: center; 
+            white-space: nowrap; /* İçindeki öğeleri tek satırda tutmaya çalışır */
+            padding-top: 50px;
+        }
+        .video-ayar {
+            display: inline-block; /* Videoları yan yana getirir */
+            margin-left: 20px; /* Videolar arası boşluk */
+            margin-right: 20px;
+            vertical-align: top;
+        }
+        hr {
+            border: none; 
+            border-top: 1px solid white;
+            width: 90%;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
 
-    <audio src="Deftones_Entombed_Ringtone_(by Fringster.com) (1).mp3" autoplay loop muted ></audio> 
+    <audio id="muzik" src="Deftones_Entombed_Ringtone_(by Fringster.com) (1).mp3" loop></audio> 
 
-    <video src="ssstik.io_@breathedivinity_1762301700366.mp4" 
-           width="500px" 
-           autoplay loop muted
-           style="display: inline-block;"> 
-    </video>
+    <div id="acilis" class="acilis-ekrani" onclick="baslatVeGoster();">
+        <img src="287444676_688488695574105_999326000883121336_n.png" 
+             alt="BreatheDivinity Logo" 
+             title="Enter to the NIGHT"> 
+    </div>
     
-    <video src="bd2.mp4" 
-           width="500px" 
-           autoplay loop muted
-           style="display: inline-block; margin-left: 890px;"> 
-    </video>
+    <div id="ana-icerik" class="icerik">
+        
+        <h1 style="margin-left: 825px; color: white;">Breathe Divinity</h1>
+        <hr>
+
+        <div class="video-container">
+            <video src="ssstik.io_@breathedivinity_1762301700366.mp4" 
+                   width="500px" 
+                   autoplay loop muted
+                   class="video-ayar"> 
+            </video>
+            
+            <video src="bd2.mp4" 
+                   width="500px" 
+                   autoplay loop muted
+                   class="video-ayar"> 
+            </video>
+        </div>
+        
+    </div>
+
+    <script>
+        function baslatVeGoster() {
+            var muzik = document.getElementById("muzik");
+            var acilis = document.getElementById("acilis");
+            var icerik = document.getElementById("ana-icerik");
+            
+            // a) SES BAŞLATMA (Tıklama olduğu için sesli çalışacaktır)
+            muzik.play().catch(error => {
+                console.log("Müzik başlatılamadı:", error);
+            });
+            
+            // b) GÖRÜNÜRLÜK AYARI
+            acilis.style.display = 'none'; // Açılış resmini gizle
+            icerik.style.display = 'block'; // Ana içeriği göster
+            
+            // Opsiyonel: Yönlendirme gerekiyorsa, buraya ekleyin:
+            // window.location.href = "index.html"; 
+        }
+    </script>
 
 </body>
 </html>
