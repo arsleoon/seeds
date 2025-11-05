@@ -1,133 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breathe Divinity - Official Site</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breathe Divinity - Official Site</title>
 
-    <style>
-        body {
-            background-color: black;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden; /* yana kaymayı engeller */
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
+  <style>
+    body {
+      background-color: black;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
 
-        .icerik {
-            display: none;
-            text-align: center;
-        }
+    .icerik {
+      display: none;
+      text-align: center;
+    }
 
-        .acilis-ekrani {
-            width: 100vw;
-            height: 100vh;
-            cursor: pointer;
-            overflow: hidden;
-        }
+    .acilis-ekrani {
+      width: 100vw;
+      height: 100dvh; /* tüm ekran yüksekliği (notch dahil) */
+      cursor: pointer;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
 
-        .acilis-ekrani img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    .acilis-ekrani img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* tam sığdırır, kesmez */
+      background-color: black;
+    }
 
-        h1 {
-            color: white;
-            text-align: center;
-            margin: 20px 0;
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
-        }
+    h1 {
+      color: white;
+      text-align: center;
+      margin: 20px 0;
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+    }
 
-        .video-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            padding: 10px;
-            box-sizing: border-box;
-        }
+    .video-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      padding: 10px;
+      box-sizing: border-box;
+    }
 
-        .video-ayar {
-            width: 45%;
-            max-width: 400px;
-            height: auto;
-            border-radius: 10px;
-        }
+    .video-ayar {
+      width: 45%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 10px;
+    }
 
-        hr {
-            border: none;
-            border-top: 1px solid white;
-            width: 90%;
-            margin: 10px auto 20px auto;
-        }
+    hr {
+      border: none;
+      border-top: 1px solid white;
+      width: 90%;
+      margin: 10px auto 20px auto;
+    }
 
-        /* Telefonlar için optimize görünüm */
-        @media (max-width: 768px) {
-            .video-container {
-                flex-wrap: nowrap;
-                justify-content: space-between;
-                padding: 0 10px;
-            }
+    @media (max-width: 768px) {
+      .video-container {
+        justify-content: space-between;
+      }
 
-            .video-ayar {
-                width: 48%;
-                max-width: none;
-                height: auto;
-            }
-        }
+      .video-ayar {
+        width: 48%;
+        max-width: none;
+      }
+    }
 
-        /* Küçük telefonlar için */
-        @media (max-width: 480px) {
-            .video-ayar {
-                width: 48%;
-            }
-        }
-    </style>
+    @media (max-width: 480px) {
+      .video-ayar {
+        width: 48%;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <audio id="muzik" src="Deftones_Entombed_Ringtone_(by Fringster.com) (1).mp3" loop></audio> 
+  <audio id="muzik" src="Deftones_Entombed_Ringtone_(by Fringster.com) (1).mp3" loop></audio> 
 
-    <div id="acilis" class="acilis-ekrani" onclick="baslatVeGoster();">
-        <img src="287444676_688488695574105_999326000883121336_n.png" 
-             alt="BreatheDivinity Logo" 
-             title="Enter to the NIGHT"> 
+  <div id="acilis" class="acilis-ekrani" onclick="baslatVeGoster();">
+    <img src="287444676_688488695574105_999326000883121336_n.png" 
+         alt="BreatheDivinity Logo" 
+         title="Enter to the NIGHT"> 
+  </div>
+
+  <div id="ana-icerik" class="icerik">
+    <h1>Breathe Divinity</h1>
+    <hr>
+
+    <div class="video-container">
+      <video id="vid1" src="ssstik.io_@breathedivinity_1762301700366.mp4" 
+             loop muted playsinline class="video-ayar"></video>
+      
+      <video id="vid2" src="bd2.mp4" 
+             loop muted playsinline class="video-ayar"></video>
     </div>
-    
-    <div id="ana-icerik" class="icerik">
-        <h1>Breathe Divinity</h1>
-        <hr>
+  </div>
 
-        <div class="video-container">
-            <video src="ssstik.io_@breathedivinity_1762301700366.mp4" 
-                   autoplay loop muted playsinline
-                   class="video-ayar"></video>
-            
-            <video src="bd2.mp4" 
-                   autoplay loop muted playsinline
-                   class="video-ayar"></video>
-        </div>
-    </div>
+  <script>
+    function baslatVeGoster() {
+      const muzik = document.getElementById("muzik");
+      const acilis = document.getElementById("acilis");
+      const icerik = document.getElementById("ana-icerik");
+      const vid1 = document.getElementById("vid1");
+      const vid2 = document.getElementById("vid2");
 
-    <script>
-        function baslatVeGoster() {
-            const muzik = document.getElementById("muzik");
-            const acilis = document.getElementById("acilis");
-            const icerik = document.getElementById("ana-icerik");
+      // Müzik başlat
+      muzik.play().catch(err => console.log("Müzik oynatılmadı:", err));
 
-            // Müziği başlat
-            muzik.play().catch(error => {
-                console.log("Müzik başlatılamadı:", error);
-            });
+      // Videoları kullanıcı tıklamasıyla başlat
+      [vid1, vid2].forEach(v => {
+        v.play().catch(err => console.log("Video oynatılmadı:", err));
+      });
 
-            // Açılış ekranını gizle, içerik göster
-            acilis.style.display = 'none';
-            icerik.style.display = 'block';
-        }
-    </script>
+      // Açılış ekranını gizle, içerik göster
+      acilis.style.display = 'none';
+      icerik.style.display = 'block';
+    }
+  </script>
 
 </body>
 </html>
