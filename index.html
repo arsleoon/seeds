@@ -19,6 +19,7 @@
     font-family: Arial, sans-serif;
   }
 
+  /* --- AÇILIŞ EKRANI --- */
   .acilis-ekrani {
     position: fixed;
     inset: 0;
@@ -27,18 +28,19 @@
     justify-content: center;
     align-items: center;
     z-index: 10;
-    transition: opacity 1s ease;
+    transition: opacity 0.5s ease;
   }
 
   .acilis-ekrani img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: contain; /* tam otursun */
   }
 
+  /* --- ANA İÇERİK --- */
   .icerik {
     opacity: 0;
-    transition: opacity 1s ease;
+    transition: opacity 0.5s ease;
   }
 
   .icerik.goster {
@@ -51,22 +53,6 @@
     font-size: clamp(1.8rem, 5vw, 2.5rem);
   }
 
-  .video-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: nowrap;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-
-  .video-ayar {
-    width: 48%;
-    height: auto;
-    border-radius: 10px;
-  }
-
   hr {
     border: none;
     border-top: 1px solid white;
@@ -74,7 +60,28 @@
     margin: 10px auto 20px auto;
   }
 
+  /* --- VİDEOLAR --- */
+  .video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+    padding: 10px;
+  }
+
+  .video-ayar {
+    width: 48%;
+    aspect-ratio: 9 / 16; /* dik format */
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
   @media (max-width: 600px) {
+    .video-container {
+      flex-direction: row;
+      gap: 5px;
+    }
     .video-ayar {
       width: 48%;
     }
@@ -92,7 +99,6 @@
 <div id="ana-icerik" class="icerik">
   <h1>Breathe Divinity</h1>
   <hr>
-
   <div class="video-container">
     <video id="vid1" src="ssstik.io_@breathedivinity_1762301700366.mp4" loop muted playsinline class="video-ayar"></video>
     <video id="vid2" src="bd2.mp4" loop muted playsinline class="video-ayar"></video>
@@ -107,18 +113,18 @@ function baslatVeGoster() {
   const vid1 = document.getElementById("vid1");
   const vid2 = document.getElementById("vid2");
 
-  // Kullanıcı tıklamasıyla müzik ve videoları başlat
+  // Tıklama = autoplay izni
   muzik.play().catch(err => console.log("Müzik oynatılmadı:", err));
   [vid1, vid2].forEach(v => {
     v.play().catch(err => console.log("Video oynatılmadı:", err));
   });
 
-  // Fade-out geçişi
+  // Daha hızlı fade
   acilis.style.opacity = "0";
   setTimeout(() => {
     acilis.style.display = "none";
     icerik.classList.add("goster");
-  }, 1000);
+  }, 500);
 }
 </script>
 
